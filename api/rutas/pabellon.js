@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var pabellon_1 = require("../controladores/pabellon");
+exports.pabellon_router = express_1.Router();
+exports.pabellon_router.post('/pabellon', pabellon_1.PostPabellon);
+exports.pabellon_router.get('/pabellon', pabellon_1.GetPabellon);
+exports.pabellon_router.get('/pabellon/:id', pabellon_1.GetPabellonesById);
+exports.pabellon_router.put('/pabellon', pabellon_1.updatePabellon);
+exports.pabellon_router.get('/pabellones/aulas', pabellon_1.getAulasXPabellones);
+exports.pabellon_router.get('/pabellones/:id/aulas', pabellon_1.getAulasByPabellonId);
