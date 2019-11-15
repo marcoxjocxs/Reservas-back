@@ -23,10 +23,20 @@ var Server = /** @class */ (function () {
         this.app = express_1.default();
         // obtener el puerto que nos asignará heroku
         // o establer por defecto el puerto 3000
-        this.puerto = process.env.PORT || 3000;
+        this.puerto = process.env.PORT || 5000;
+        this.HabilitarCORS();
         this.configurarBodyParser();
         this.configurarRutas();
     }
+    Server.prototype.HabilitarCORS = function () {
+        this.app.use(function (req, res, next) {
+            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+            res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+            res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+            next();
+        });
+    };
     Server.prototype.configurarBodyParser = function () {
         this.app.use(body_parser_1.default.json());
     };
